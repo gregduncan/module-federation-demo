@@ -9,6 +9,8 @@ concept and reference implementation.
 The host app (`hosts/web`) fetches a discovery document to register remotes at runtime,
 then lazily loads each remote using a `System` component.
 
+This fork updates the baseline with TypeScript, ES modules in `common`, and adds ESLint plus Prettier.
+
 ## Scripts 🧰
 
 Root (workspace):
