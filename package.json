@@ -1,5 +1,5 @@
 {
-  "name": "dynamic-mod-fed",
+  "name": "module-federation-demo",
   "version": "1.0.0",
   "description": "Workspace for the Dynamic Module Federation demo",
   "private": true,

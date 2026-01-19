@@ -25,7 +25,7 @@ Packages:
 
 ## VS Code Workspace 🧑‍💻
 
-Open the workspace file at `.vscode/dynamic-mod-fed.code-workspace` for a
+Open the workspace file at `.vscode/module-federation-demo.code-workspace` for a
 preconfigured VS Code setup (folders, settings, and tasks).
 
 ## Prerequisites ✅

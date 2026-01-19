@@ -4,7 +4,7 @@
   "description": "Host shell app serving the micro-frontend runtime",
   "main": "src/index.ts",
   "scripts": {
-    "build": "./node_modules/.bin/rspack build",
+    "build": "rspack build",
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc -p tsconfig.json",
