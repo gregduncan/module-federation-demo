@@ -1,7 +1,9 @@
 # Rspack Dynamic Module Federation Demo 🚀
 
 This repo hosts a micro-frontend demo built with Rspack and Module Federation.
-It is a fork of the demo project that accompanies Luca Mezzalira's book
+It is a fork of
+["webpack-MF2-discovery-service"](https://github.com/lucamezzalira/webpack-MF2-discovery-service),
+the demo project that accompanies Luca Mezzalira's book
 ["Building Micro-Frontends"](https://www.amazon.co.uk/Building-Micro-Frontends-Distributed-Systems-Frontend-ebook/dp/B0FXNQQQFT).
 This version adapts the original webpack example to Rspack and simplifies the
 number of remotes and overall setup. Credit to Luca Mezzalira for the original
@@ -56,5 +58,6 @@ discovery document is updated to point at the new remote entry.
 
 ## Credits 🙌
 
-- Luca Mezzalira: original demo and book reference implementation.
+- Luca Mezzalira: original demo and book reference implementation for
+  ["Building Micro-Frontends"](https://www.amazon.co.uk/Building-Micro-Frontends-Distributed-Systems-Frontend-ebook/dp/B0FXNQQQFT).
 - Codex (GPT-5): Rspack migration, repo cleanup, and documentation updates.
