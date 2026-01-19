@@ -1,5 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 
+import {
+  AddToCartButton,
+  ColorOption,
+  DetailsDescription,
+  DetailsImage,
+  DetailsPage,
+  DetailsPrice,
+  DetailsTitle,
+  NotFound,
+  OptionRow,
+  PrimaryButton,
+  ProductLayout,
+  ReviewCard,
+  ReviewComment,
+  ReviewHeader,
+  ReviewsList,
+  ReviewsSection,
+  Section,
+  SizeButton,
+} from './styles';
+
 type Review = {
   id: number;
   user: string;
@@ -119,56 +140,29 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
   if (!product || Number.isNaN(numericProductId)) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <NotFound>
         <h1>Product not found</h1>
         <p>
           Product ID: {productId} (converted to: {numericProductId})
         </p>
-        <button
-          style={{
-            backgroundColor: '#4299e1',
-            color: 'white',
-            padding: '0.5rem 1rem',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            marginTop: '1rem',
-          }}
-          onClick={() => navigate('/catalogue')}
-        >
+        <PrimaryButton $marginTop="1rem" onClick={() => navigate('/catalogue')}>
           Back to Catalogue
-        </button>
-      </div>
+        </PrimaryButton>
+      </NotFound>
     );
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <button
-        style={{
-          backgroundColor: '#4299e1',
-          color: 'white',
-          padding: '0.5rem 1rem',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          marginBottom: '2rem',
-        }}
-        onClick={() => navigate('/catalogue')}
-      >
+    <DetailsPage>
+      <PrimaryButton $marginBottom="2rem" onClick={() => navigate('/catalogue')}>
         Back to Catalogue
-      </button>
+      </PrimaryButton>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+      <ProductLayout>
         <div>
-          <img
+          <DetailsImage
             alt={product.title}
             src={product.image}
-            style={{
-              width: '100%',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src = 'https://picsum.photos/600/600';
@@ -178,108 +172,50 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         </div>
 
         <div>
-          <h1 style={{ marginTop: 0, marginBottom: '1rem' }}>{product.title}</h1>
-          <p
-            style={{
-              fontSize: '1.5rem',
-              color: '#2d3748',
-              marginBottom: '1rem',
-            }}
-          >
-            {product.price}
-          </p>
-          <p
-            style={{
-              lineHeight: '1.6',
-              color: '#4a5568',
-              marginBottom: '2rem',
-            }}
-          >
-            {product.description}
-          </p>
+          <DetailsTitle>{product.title}</DetailsTitle>
+          <DetailsPrice>{product.price}</DetailsPrice>
+          <DetailsDescription>{product.description}</DetailsDescription>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <Section>
             <h3>Available Sizes:</h3>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <OptionRow>
               {product.sizes.map((size) => (
-                <button
-                  key={size}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '4px',
-                    background: 'white',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {size}
-                </button>
+                <SizeButton key={size}>{size}</SizeButton>
               ))}
-            </div>
-          </div>
+            </OptionRow>
+          </Section>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <Section>
             <h3>Available Colors:</h3>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <OptionRow>
               {product.colors.map((color) => (
-                <div
-                  key={color}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '4px',
-                    background: 'white',
-                  }}
-                >
-                  {color}
-                </div>
+                <ColorOption key={color}>{color}</ColorOption>
               ))}
-            </div>
-          </div>
+            </OptionRow>
+          </Section>
 
-          <button
-            style={{
-              backgroundColor: '#48bb78',
-              color: 'white',
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '1.1rem',
-              width: '100%',
-            }}
-          >
-            Add to Cart
-          </button>
+          <AddToCartButton>Add to Cart</AddToCartButton>
         </div>
-      </div>
+      </ProductLayout>
 
-      <div style={{ marginTop: '3rem' }}>
+      <ReviewsSection>
         <h2>Customer Reviews</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <ReviewsList>
           {product.reviews.map((review) => (
-            <div
-              key={review.id}
-              style={{
-                padding: '1rem',
-                border: '1px solid #e2e8f0',
-                borderRadius: '8px',
-                background: 'white',
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <ReviewCard key={review.id}>
+              <ReviewHeader>
                 <strong>{review.user}</strong>
                 <div>
                   {'★'.repeat(review.rating)}
                   {'☆'.repeat(5 - review.rating)}
                 </div>
-              </div>
-              <p style={{ marginTop: '0.5rem', color: '#4a5568' }}>{review.comment}</p>
-            </div>
+              </ReviewHeader>
+              <ReviewComment>{review.comment}</ReviewComment>
+            </ReviewCard>
           ))}
-        </div>
-      </div>
-    </div>
+        </ReviewsList>
+      </ReviewsSection>
+    </DetailsPage>
   );
 };
 

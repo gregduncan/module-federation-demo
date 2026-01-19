@@ -1,14 +1,9 @@
+import { LoadingWrapper } from '../styles';
+
 const Loading = () => (
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '50vh',
-    }}
-  >
+  <LoadingWrapper>
     <h2>Loading application...</h2>
-  </div>
+  </LoadingWrapper>
 );
 
 export default Loading;

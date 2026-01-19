@@ -1,6 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import ProductDetails from './product-details';
+import {
+  CatalogueCard,
+  CatalogueGrid,
+  CataloguePage,
+  CataloguePrice,
+  CatalogueProductImage,
+  CatalogueProductTitle,
+  CatalogueTitle,
+  ViewButton,
+} from './styles';
 
 type Product = {
   id: number;
@@ -65,86 +75,28 @@ function Catalogue() {
   ];
 
   return (
-    <div
-      style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 2rem',
-      }}
-    >
-      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Our T-Shirt Collection</h1>
+    <CataloguePage>
+      <CatalogueTitle>Our T-Shirt Collection</CatalogueTitle>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '2rem',
-          padding: '1rem',
-        }}
-      >
+      <CatalogueGrid>
         {products.map((product) => (
-          <div
-            key={product.id}
-            style={{
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              padding: '1rem',
-              textAlign: 'center',
-              backgroundColor: 'white',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-              transition: 'transform 0.2s ease-in-out',
-            }}
-          >
-            <img
+          <CatalogueCard key={product.id}>
+            <CatalogueProductImage
               alt={product.title}
               src={product.image}
-              style={{
-                width: '100%',
-                borderRadius: '4px',
-                marginBottom: '1rem',
-              }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = 'https://picsum.photos/300/300';
                 target.alt = `${product.title} (fallback)`;
               }}
             />
-            <h3 style={{ marginBottom: '0.5rem' }}>{product.title}</h3>
-            <p
-              style={{
-                fontSize: '1.2rem',
-                fontWeight: 'bold',
-                color: '#4299e1',
-                marginBottom: '1rem',
-              }}
-            >
-              {product.price}
-            </p>
-            <button
-              style={{
-                backgroundColor: '#4299e1',
-                color: 'white',
-                padding: '0.5rem 1rem',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                transition: 'background-color 0.2s ease-in-out',
-              }}
-              onClick={() => handleViewDetails(product.id)}
-              onMouseEnter={(e) => {
-                (e.target as HTMLButtonElement).style.backgroundColor = '#3182ce';
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLButtonElement).style.backgroundColor = '#4299e1';
-              }}
-            >
-              View Details
-            </button>
-          </div>
+            <CatalogueProductTitle>{product.title}</CatalogueProductTitle>
+            <CataloguePrice>{product.price}</CataloguePrice>
+            <ViewButton onClick={() => handleViewDetails(product.id)}>View Details</ViewButton>
+          </CatalogueCard>
         ))}
-      </div>
-    </div>
+      </CatalogueGrid>
+    </CataloguePage>
   );
 }
 

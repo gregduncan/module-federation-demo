@@ -1,5 +1,7 @@
 type ProductDetailsProps = {
-    productId: string;
+  productId: string;
 };
-declare const ProductDetails: ({ productId }: ProductDetailsProps) => import("react/jsx-runtime").JSX.Element;
+declare const ProductDetails: ({
+  productId,
+}: ProductDetailsProps) => import('react/jsx-runtime').JSX.Element;
 export default ProductDetails;

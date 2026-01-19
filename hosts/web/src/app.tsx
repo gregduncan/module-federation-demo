@@ -16,6 +16,7 @@ import NotificationModal from './components/notification-modal';
 import './index.css';
 import emitter from './services/eventEmitter';
 import type { EventEmitterLike } from './services/eventEmitter';
+import { Main, NotFound } from './styles';
 
 type RemoteConfig = {
   url: string;
@@ -172,7 +173,7 @@ function App() {
     <Router>
       <div>
         <Header />
-        <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
+        <Main>
           {isLoading ? (
             <Loading />
           ) : (
@@ -187,16 +188,16 @@ function App() {
               <Route
                 path="*"
                 element={
-                  <div style={{ textAlign: 'center', padding: '2rem' }}>
+                  <NotFound>
                     <h2>Page not found</h2>
                     <p>Current path: {window.location.pathname}</p>
                     <p>Available routes: {routes.map((r) => r.path).join(', ')}</p>
-                  </div>
+                  </NotFound>
                 }
               />
             </Routes>
           )}
-        </main>
+        </Main>
         <NotificationModal emitter={emitter} />
       </div>
     </Router>

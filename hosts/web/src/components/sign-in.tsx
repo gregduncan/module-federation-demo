@@ -1,5 +1,20 @@
 import { useState } from 'react';
 
+import {
+  AuthenticatedText,
+  SignInBackdrop,
+  SignInCloseButton,
+  SignInErrorMessage,
+  SignInField,
+  SignInFieldLarge,
+  SignInInput,
+  SignInLabel,
+  SignInModal,
+  SignInSubmitButton,
+  SignInTitle,
+  SignInTrigger,
+} from '../styles';
+
 const SignIn = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [username, setUsername] = useState('');
@@ -25,156 +40,45 @@ const SignIn = () => {
   };
 
   if (isAuthenticated) {
-    return (
-      <span
-        style={{
-          color: '#4a5568',
-          fontWeight: 500,
-        }}
-      >
-        Welcome, {authenticatedUser}!
-      </span>
-    );
+    return <AuthenticatedText>Welcome, {authenticatedUser}!</AuthenticatedText>;
   }
 
   return (
     <>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: '#4a5568',
-          fontWeight: 500,
-          cursor: 'pointer',
-          padding: 0,
-          font: 'inherit',
-        }}
-        onClick={() => setIsOpen(true)}
-      >
-        Sign In
-      </button>
+      <SignInTrigger onClick={() => setIsOpen(true)}>Sign In</SignInTrigger>
 
       {isOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1001,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '8px',
-              width: '100%',
-              maxWidth: '400px',
-              position: 'relative',
-            }}
-          >
-            <button
-              style={{
-                position: 'absolute',
-                right: '1rem',
-                top: '1rem',
-                background: 'none',
-                border: 'none',
-                fontSize: '1.5rem',
-                cursor: 'pointer',
-              }}
-              onClick={() => setIsOpen(false)}
-            >
-              ×
-            </button>
+        <SignInBackdrop>
+          <SignInModal>
+            <SignInCloseButton onClick={() => setIsOpen(false)}>×</SignInCloseButton>
 
-            <h2 style={{ marginTop: 0, marginBottom: '1.5rem' }}>Sign In</h2>
+            <SignInTitle>Sign In</SignInTitle>
 
             <form onSubmit={handleSubmit}>
-              {error && (
-                <div
-                  style={{
-                    color: '#e53e3e',
-                    backgroundColor: '#fff5f5',
-                    padding: '0.75rem',
-                    borderRadius: '4px',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {error}
-                </div>
-              )}
+              {error && <SignInErrorMessage>{error}</SignInErrorMessage>}
 
-              <div style={{ marginBottom: '1rem' }}>
-                <label
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    color: '#4a5568',
-                  }}
-                >
-                  Username
-                </label>
-                <input
+              <SignInField>
+                <SignInLabel>Username</SignInLabel>
+                <SignInInput
                   type="text"
                   value={username}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '4px',
-                  }}
                   onChange={(e) => setUsername(e.target.value)}
                 />
-              </div>
+              </SignInField>
 
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    color: '#4a5568',
-                  }}
-                >
-                  Password
-                </label>
-                <input
+              <SignInFieldLarge>
+                <SignInLabel>Password</SignInLabel>
+                <SignInInput
                   type="password"
                   value={password}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '4px',
-                  }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </div>
+              </SignInFieldLarge>
 
-              <button
-                type="submit"
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  backgroundColor: '#4299e1',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: 500,
-                }}
-              >
-                Sign In
-              </button>
+              <SignInSubmitButton type="submit">Sign In</SignInSubmitButton>
             </form>
-          </div>
-        </div>
+          </SignInModal>
+        </SignInBackdrop>
       )}
     </>
   );

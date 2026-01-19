@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import type { EventEmitterLike } from '../services/eventEmitter';
+import {
+  NotificationCloseButton,
+  NotificationTitle,
+  NotificationModal as StyledNotificationModal,
+} from '../styles';
 
 type NotificationPayload = {
   type: string;
@@ -41,36 +46,11 @@ function NotificationModal({ emitter }: NotificationModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        backgroundColor: type === 'success' ? '#48bb78' : '#4299e1',
-        color: 'white',
-        padding: '15px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        maxWidth: '300px',
-      }}
-    >
-      <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>{title}</div>
+    <StyledNotificationModal $variant={type}>
+      <NotificationTitle>{title}</NotificationTitle>
       <div>{message}</div>
-      <button
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          cursor: 'pointer',
-        }}
-        onClick={handleClose}
-      >
-        ✕
-      </button>
-    </div>
+      <NotificationCloseButton onClick={handleClose}>✕</NotificationCloseButton>
+    </StyledNotificationModal>
   );
 }
 
