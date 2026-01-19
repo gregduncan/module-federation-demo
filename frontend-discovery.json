@@ -1,0 +1,36 @@
+{
+  "schema": "https://github.com/awslabs/frontend-discovery/blob/main/schema/v1-pre.json",
+  "microFrontends": {
+    "home": [
+      {
+        "url": "http://localhost:3002/remoteEntry.js",
+        "metadata": {
+          "integrity": "sha256-initial",
+          "version": "1.0.0"
+        },
+        "extras": {
+          "name": "home",
+          "alias": "home",
+          "exposed": "MFE",
+          "route": "/"
+        }
+      }
+    ],
+    "catalogue": [
+      {
+        "url": "http://localhost:3001/remoteEntry.js",
+        "metadata": {
+          "integrity": "sha256-initial",
+          "version": "1.0.0"
+        },
+        "extras": {
+          "name": "catalogue",
+          "alias": "catalogue",
+          "exposed": "MFE",
+          "route": "/catalogue",
+          "routes": ["/catalogue/:productId"]
+        }
+      }
+    ]
+  }
+}

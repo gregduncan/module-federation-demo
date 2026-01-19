@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "../hosts",
+      "name": "hosts",
+    },
+    {
+      "path": "../remotes",
+      "name": "remotes",
+    },
+    {
+      "path": "..",
+      "name": "root",
+    },
+  ],
+}

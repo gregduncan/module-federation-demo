@@ -1,0 +1,5 @@
+packages:
+  - 'hosts/app-webpack'
+  - 'hosts/web'
+  - 'remotes/catalogue'
+  - 'remotes/home'
